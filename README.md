@@ -41,3 +41,17 @@ This project includes a simple to-do app built with Vue.js. The app allows you t
 4. Use the checkboxes to mark tasks as completed.
 5. Click the "Remove" button to delete a task.
 6. Completed tasks will be displayed in a separate list.
+
+## Vue Router
+This project now includes Vue Router for navigation between different pages.
+
+### How to Use the Router
+1. Open the app in your browser.
+2. Use the navigation links to switch between the Home and About pages.
+3. The Home page displays the To-Do App.
+4. The About page provides information about the app.
+
+### Adding New Routes
+1. Create a new component in the `src/components` directory.
+2. Define a new route in the `src/router/index.js` file.
+3. Add a navigation link to the new route in the `src/App.vue` file.
