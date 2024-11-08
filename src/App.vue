@@ -10,8 +10,13 @@
         <input type="checkbox" v-model="task.completed" />
         <span :class="{ completed: task.completed }">{{ task.text }}</span>
         <button @click="removeTask(index)">Remove</button>
+        <button @click="editTask(index)">Edit</button>
       </li>
     </ul>
+    <div v-if="editingTask !== null">
+      <input v-model="editingTask.text" placeholder="Edit task" />
+      <button @click="saveTask">Save</button>
+    </div>
     <h2>Completed Tasks</h2>
     <ul>
       <li v-for="(task, index) in completedTasks" :key="index">
@@ -26,18 +31,27 @@ export default {
   data() {
     return {
       tasks: [],
-      newTask: ''
+      newTask: '',
+      editingTask: null
     };
   },
   methods: {
     addTask() {
-      if (this.newTask.trim() !== '') {
+      if (this.editingTask !== null) {
+        this.editingTask = null;
+      } else if (this.newTask.trim() !== '') {
         this.tasks.push({ text: this.newTask, completed: false });
         this.newTask = '';
       }
     },
     removeTask(index) {
       this.tasks.splice(index, 1);
+    },
+    editTask(index) {
+      this.editingTask = this.tasks[index];
+    },
+    saveTask() {
+      this.editingTask = null;
     }
   },
   computed: {

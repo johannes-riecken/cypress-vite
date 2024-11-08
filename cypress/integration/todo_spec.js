@@ -28,4 +28,15 @@ describe('To-Do App', () => {
     cy.get('h2').contains('Completed Tasks').next('ul').should('contain', 'Task 1');
     cy.get('h2').contains('Completed Tasks').next('ul').should('not.contain', 'Task 2');
   });
+
+  it('should edit a task', () => {
+    cy.get('input[placeholder="Add a new task"]').type('Task to be edited');
+    cy.get('button[type="submit"]').click();
+    cy.get('ul').first().should('contain', 'Task to be edited');
+    cy.get('button').contains('Edit').click();
+    cy.get('input[placeholder="Edit task"]').clear().type('Edited Task');
+    cy.get('button').contains('Save').click();
+    cy.get('ul').first().should('contain', 'Edited Task');
+    cy.get('ul').first().should('not.contain', 'Task to be edited');
+  });
 });
