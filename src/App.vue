@@ -1,0 +1,55 @@
+<template>
+  <div id="app">
+    <h1>To-Do App</h1>
+    <form @submit.prevent="addTask">
+      <input v-model="newTask" placeholder="Add a new task" />
+      <button type="submit">Add Task</button>
+    </form>
+    <ul>
+      <li v-for="(task, index) in tasks" :key="index">
+        <input type="checkbox" v-model="task.completed" />
+        <span :class="{ completed: task.completed }">{{ task.text }}</span>
+        <button @click="removeTask(index)">Remove</button>
+      </li>
+    </ul>
+    <h2>Completed Tasks</h2>
+    <ul>
+      <li v-for="(task, index) in completedTasks" :key="index">
+        <span>{{ task.text }}</span>
+      </li>
+    </ul>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      tasks: [],
+      newTask: ''
+    };
+  },
+  methods: {
+    addTask() {
+      if (this.newTask.trim() !== '') {
+        this.tasks.push({ text: this.newTask, completed: false });
+        this.newTask = '';
+      }
+    },
+    removeTask(index) {
+      this.tasks.splice(index, 1);
+    }
+  },
+  computed: {
+    completedTasks() {
+      return this.tasks.filter(task => task.completed);
+    }
+  }
+};
+</script>
+
+<style>
+.completed {
+  text-decoration: line-through;
+}
+</style>
