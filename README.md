@@ -30,3 +30,14 @@ To run Cypress tests in headless mode, run:
 ```
 npm run cypress:run
 ```
+
+## To-Do App
+This project includes a simple to-do app built with Vue.js. The app allows you to add, remove, and filter tasks.
+
+### How to Use the To-Do App
+1. Open the app in your browser.
+2. Use the input field to add a new task.
+3. Click the "Add Task" button to add the task to the list.
+4. Use the checkboxes to mark tasks as completed.
+5. Click the "Remove" button to delete a task.
+6. Completed tasks will be displayed in a separate list.
